@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Acesso ao usuário{% endblock %}
+
+{% block content %}
+  <h1>Acesso ao usuário</h1>
+  {% if form.erros %}
+    <p>
+        Seu nome de usuário e senha não coincidem
+        Por favor, tente novamente
+    </p>
+  {% else %}
+    <p>Por Favor, use o seguinte formulário para fazer o login</p>
+  {% endif %}
+  <div class="login-form">
+      <form action="{% url 'login' %}" method="post">
+          {{form.as_p}}
+          {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <p><input type="submit" value="Entrar"></p>
+      </form>
+      
+  </div>  
+  {% endblock %}
